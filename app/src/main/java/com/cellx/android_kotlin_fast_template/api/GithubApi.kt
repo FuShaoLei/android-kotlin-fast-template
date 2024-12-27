@@ -1,14 +1,10 @@
 package com.cellx.android_kotlin_fast_template.api
 
 import com.cellx.android_kotlin_fast_template.entity.RepoSearchResponse
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
-import java.security.cert.X509Certificate
-import javax.net.ssl.X509TrustManager
 
 interface GithubApi {
 

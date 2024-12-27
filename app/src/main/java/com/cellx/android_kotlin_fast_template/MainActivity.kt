@@ -3,20 +3,17 @@ package com.cellx.android_kotlin_fast_template
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
 import android.widget.Button
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.cellx.android_kotlin_fast_template.api.GithubApi
+import com.cellx.android_kotlin_fast_template.api.ServiceCreator
+import com.cellx.android_kotlin_fast_template.api.TestService
 import com.cellx.android_kotlin_fast_template.databinding.ActivityMainBinding
-import com.cellx.android_kotlin_fast_template.model.GitHubViewModel
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-
-    private val viewModel: GitHubViewModel by viewModels()
+    val scope = MainScope()
 
     private lateinit var binding :ActivityMainBinding
 
@@ -35,29 +32,29 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnRequest.setOnClickListener {
             Log.e("555 => ", "request start...")
-        }
+            fetchData()
 
-//
-//
-//        // 观察 ViewModel 中的 LiveData
-//        viewModel.repositories.observe(this) { repositories ->
-//            // 只有在 Activity 处于活跃状态时才更新 UI
-//            if (repositories.isNotEmpty()) {
-//                Toast.makeText(this, "Success !", Toast.LENGTH_SHORT).show()
-//                repositories.forEach {
-//                    Log.e("666 fuck =>", it.toString())
-//                }
-//
-//            } else {
-//                Toast.makeText(this, "No repositories found", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//
-//        // 请求数据
-        viewModel.fetchRepositories()
+        }
 
 
     }
 
+    private fun fetchData(){
+        scope.launch {
+            try {
+                val result = ServiceCreator.create<TestService>().get1()
 
+                Log.e("result fuck => ", result.toString())
+
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        scope.cancel()
+    }
 }
