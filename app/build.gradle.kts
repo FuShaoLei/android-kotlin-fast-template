@@ -60,5 +60,11 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
 
+    implementation("com.squareup.okhttp3:logging-interceptor:4.0.0")
+
+    // Lifecycle 相关
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+
 
 }
