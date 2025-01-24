@@ -14,18 +14,16 @@ import com.cellx.android_kotlin_fast_template.entity.NormalButton
 import com.cellx.android_kotlin_fast_template.model.GitHubViewModel
 import com.cellx.android_kotlin_fast_template.utils.createItemDecoration
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel: GitHubViewModel by viewModels()
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        binding.recyclerview.layoutManager = LinearLayoutManager(this)
-        binding.recyclerview.addItemDecoration(createItemDecoration(bottom = 0))
+        rootbinding.recyclerview.layoutManager = LinearLayoutManager(this)
+        rootbinding.recyclerview.addItemDecoration(createItemDecoration(bottom = 0))
 
-        binding.recyclerview.adapter = NormalButtonAdapter(
+        rootbinding.recyclerview.adapter = NormalButtonAdapter(
             listOf(
                 NormalButton("请求数据") { Log.e(TAG, "请求数据 fuck !!!") },
                 NormalButton("列表") { Toast.makeText(this, "wtf", Toast.LENGTH_SHORT).show() },
