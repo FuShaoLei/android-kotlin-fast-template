@@ -16,10 +16,7 @@ import com.cellx.android_kotlin_fast_template.utils.createItemDecoration
 
 class MainActivity : BaseActivity() {
     private val viewModel: GitHubViewModel by viewModels()
-
     private lateinit var binding: ActivityMainBinding
-
-    private lateinit var adapter: NormalButtonAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +25,13 @@ class MainActivity : BaseActivity() {
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
         binding.recyclerview.addItemDecoration(createItemDecoration(bottom = 0))
 
-        val list = listOf(
-            NormalButton("请求数据") { Log.e(TAG, "请求数据 fuck !!!")},
-            NormalButton("列表") { Toast.makeText(this,"wtf",Toast.LENGTH_SHORT).show() },
-            NormalButton("MMKV测试")
+        binding.recyclerview.adapter = NormalButtonAdapter(
+            listOf(
+                NormalButton("请求数据") { Log.e(TAG, "请求数据 fuck !!!") },
+                NormalButton("列表") { Toast.makeText(this, "wtf", Toast.LENGTH_SHORT).show() },
+                NormalButton("MMKV测试")
+            )
         )
-
-        adapter = NormalButtonAdapter(list)
-
-        binding.recyclerview.adapter = adapter
 
     }
 

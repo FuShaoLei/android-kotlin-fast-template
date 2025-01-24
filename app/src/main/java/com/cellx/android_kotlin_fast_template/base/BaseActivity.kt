@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 open class BaseActivity : AppCompatActivity() {
 
-    protected open val TAG: String = this::class.simpleName ?: "BaseActivity"
+    protected open val TAG: String =  "${this::class.simpleName} =>" ?: "BaseActivity"
 
     protected lateinit var context: Context
 
