@@ -68,6 +68,11 @@ dependencies {
 
     // Activity 的 ViewModel 扩展函数
     implementation("androidx.activity:activity-ktx:1.9.3")
+    implementation("androidx.fragment:fragment-ktx:1.5.5")
+
+    implementation("com.tencent:mmkv:1.3.9")
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
 
 }
