@@ -2,41 +2,41 @@ package com.cellx.android_kotlin_fast_template
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cellx.android_kotlin_fast_template.adapter.NormalButtonAdapter
+import com.cellx.android_kotlin_fast_template.base.BaseActivity
 import com.cellx.android_kotlin_fast_template.databinding.ActivityMainBinding
 import com.cellx.android_kotlin_fast_template.entity.NormalButton
 import com.cellx.android_kotlin_fast_template.model.GitHubViewModel
 import com.cellx.android_kotlin_fast_template.utils.createItemDecoration
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private val viewModel: GitHubViewModel by viewModels()
 
     private lateinit var binding: ActivityMainBinding
 
-
-    private val adapter = NormalButtonAdapter()
+    private lateinit var adapter: NormalButtonAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
-        binding.recyclerview.addItemDecoration(createItemDecoration())
-
+        binding.recyclerview.addItemDecoration(createItemDecoration(bottom = 0))
 
         val list = listOf(
-            NormalButton("请求数据"),
-            NormalButton("列表"),
+            NormalButton("请求数据") { Log.e(TAG, "请求数据 fuck !!!")},
+            NormalButton("列表") { Toast.makeText(this,"wtf",Toast.LENGTH_SHORT).show() },
             NormalButton("MMKV测试")
         )
 
+        adapter = NormalButtonAdapter(list)
+
         binding.recyclerview.adapter = adapter
-
-        adapter.addData(list)
-
 
     }
 

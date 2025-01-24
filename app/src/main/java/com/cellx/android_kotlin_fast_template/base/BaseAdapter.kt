@@ -9,16 +9,24 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T, V : ViewDataBinding>(private val layoutId: Int) :
+abstract class BaseAdapter<T, V : ViewDataBinding>(private val layoutId: Int, private val initialItems: List<T> = emptyList()) :
     RecyclerView.Adapter<BaseAdapter.BaseViewHolder<V>>() {
 
+
     private val items = mutableListOf<T>()
+    init {
+        if (!initialItems.isNullOrEmpty()) {
+            items.addAll(initialItems)
+        }
+    }
+
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun addData(newItems: List<T>) {
         if (newItems.isEmpty()) return
 
-        val startPosition = items.size
+        val startPosition = itemCount
         items.addAll(newItems)
         notifyItemRangeInserted(startPosition, newItems.size)
     }

@@ -11,6 +11,8 @@ import com.cellx.android_kotlin_fast_template.app.App
 
 typealias ClickHandler<T> = (T) -> Unit
 
+typealias SimpleClickHandler = () -> Unit
+
 fun Int.dp2px(): Int {
     val density = App.appContext.resources.displayMetrics.density
 
