@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cellx.android_kotlin_fast_template.adapter.NormalButtonAdapter
 import com.cellx.android_kotlin_fast_template.base.BaseActivity
 import com.cellx.android_kotlin_fast_template.databinding.ActivityMainBinding
+import com.cellx.android_kotlin_fast_template.demo.activity.MMKVActivity
 import com.cellx.android_kotlin_fast_template.entity.NormalButton
 import com.cellx.android_kotlin_fast_template.model.GitHubViewModel
 import com.cellx.android_kotlin_fast_template.utils.createItemDecoration
+import com.cellx.android_kotlin_fast_template.utils.jump
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel: GitHubViewModel by viewModels()
@@ -27,7 +29,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             listOf(
                 NormalButton("请求数据") { Log.e(TAG, "请求数据 fuck !!!") },
                 NormalButton("列表") { Toast.makeText(this, "wtf", Toast.LENGTH_SHORT).show() },
-                NormalButton("MMKV测试")
+                NormalButton("MMKV测试") {
+                    jump<MMKVActivity>()
+                }
             )
         )
 

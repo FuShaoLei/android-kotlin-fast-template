@@ -2,12 +2,14 @@ package com.cellx.android_kotlin_fast_template.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Rect
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cellx.android_kotlin_fast_template.app.App
+import com.cellx.android_kotlin_fast_template.base.BaseActivity
 
 typealias ClickHandler<T> = (T) -> Unit
 
@@ -63,4 +65,24 @@ fun createItemDecoration(
         }
     }
 }
+
+
+/**
+ * 启动Activity
+ * @param T 目的Activity
+ */
+inline fun <reified T> jump(context: Context) {
+    context.startActivity(Intent(context, T::class.java))
+}
+
+inline fun <reified T> BaseActivity<*>.jump() {
+    this.startActivity(Intent(this, T::class.java))
+}
+
+
+
+//inline fun <reified T> getObjectFromCache(key: String): T? {
+//    val jsonData = CacheUtil.getObjectStr(key) ?: return null
+//    return DataUtil.gson.fromJson(jsonData, T::class.java)
+//}
 
